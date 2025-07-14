@@ -1,15 +1,21 @@
 import redis
 from datetime import datetime, timezone
 
+
+"""
+    RTC(Redis Token Counter) uses Redis to track of token usage.
+    RTCLimit stop further calls from being made when the tier limit is reached, allowing anyone to avoid incurring extra charges.
+    Automatically check for Daily Reset using UTC timezone before every call.
+"""
 # ----------------- Start Of Class Creation -----------------
 
-class TPDLimit:
+class RTCLimit:
 
     def __init__(self, host, port, limit, db=0):
         # Redis setup
         self.database = redis.Redis(host, port, db)
         # Setting TPD Usage Limit. Leaving Extra space for outputs.
-        self.Gemini_TPD_limit = limit - 10000
+        self.Gemini_TPD_limit = limit - 50000
 
     # Check for Daily TPD reset
     def check_daily_reset(self):

@@ -1,12 +1,16 @@
 import os
 import google.generativeai as genai
 import redis
-from redis_token_counter import TPDLimit
+from rtc import RTCLimit
 
+""""
+    This is purely an example class to show rtc.py functions.
+"""
 
 # Multiple dbs used rather than ports to lower resource usage
-flash = TPDLimit(host='localhost', port=6379, db=2, limit=900000)
-lite = TPDLimit(host='localhost', port=6380, db=1, limit=900000)
+# RTCLimit automatically sets aside 50,000 tokens for last output before reaching the limit.
+flash = RTCLimit(host='localhost', port=6379, db=0, limit=1000000)
+lite = RTCLimit(host='localhost', port=6379, db=1, limit=1000000)
 
 # Multiple models can be created as long as the token count is not shared between the models.
 first_model = genai.GenerativeModel('gemini-2.0-flash')
