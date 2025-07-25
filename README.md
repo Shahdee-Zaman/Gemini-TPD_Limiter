@@ -1,5 +1,5 @@
 # Gemini-TPD_Limiter
-A python based TPD (Token Per Day) limiter created using Redis. It is useful for managing rate limits, ensuring you stay within your tier's limit and avoind incurring extra charges.
+A python based TPD (Token Per Day) limiter created using Redis. It is useful for managing rate limits, ensuring you stay within your tier's limit and avoid incurring extra charges.
 
 ## Features
 - Redis for fast and accurate rate tracking
